@@ -1,26 +1,143 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens ported from design-import/tailwind.config.js
+ * (Tailwind v3 `theme.extend` shape) into Tailwind v4's CSS-first
+ * `@theme` config. Every `--color-*`, `--font-*`, `--text-*`, `--radius-*`,
+ * `--shadow-*` etc. below becomes a Tailwind utility automatically
+ * (e.g. `--color-coral-500` -> `bg-coral-500` / `text-coral-500` / ...).
+ */
+@theme {
+  /* Colors */
+  --color-coral-50: #FEF1F0;
+  --color-coral-100: #FBDEDC;
+  --color-coral-200: #F6BEBB;
+  --color-coral-300: #F09793;
+  --color-coral-400: #EE7470;
+  --color-coral-500: #E85550;
+  --color-coral-600: #D5423D;
+  --color-coral-700: #B23430;
+
+  --color-amber-50: #FEF6E6;
+  --color-amber-100: #FCEAC2;
+  --color-amber-200: #FAD888;
+  --color-amber-300: #F8C656;
+  --color-amber-400: #F6B33A;
+  --color-amber-500: #F5A623;
+  --color-amber-600: #DE9012;
+  --color-amber-700: #B5740C;
+
+  --color-teal-50: #E6F2F1;
+  --color-teal-100: #C8E2DF;
+  --color-teal-300: #7FBDB7;
+  --color-teal-500: #3C9A92;
+  --color-teal-600: #2E8B84;
+  --color-teal-700: #246E68;
+
+  --color-raspberry-50: #FAE9EE;
+  --color-raspberry-100: #F3D2DC;
+  --color-raspberry-300: #DA8298;
+  --color-raspberry-500: #C8425F;
+  --color-raspberry-600: #B83050;
+  --color-raspberry-700: #98263F;
+
+  --color-cream: #FEFDF5;
+  --color-cream-100: #FAF7E9;
+  --color-cream-200: #F4EFDA;
+
+  --color-sand-300: #EBE3C9;
+
+  --color-ink-900: #2B2722;
+  --color-ink-700: #4A443C;
+  --color-ink-500: #6E665B;
+  --color-ink-300: #A79E8E;
+  --color-ink-200: #C9C0AE;
+
+  --color-line: #E7E1CF;
+  --color-line-strong: #D8D0BA;
+
+  --color-success-bg: #DBEEDF;
+  --color-success-fg: #3E8255;
+  --color-warning-bg: #FCEAC2;
+  --color-warning-fg: #B5740C;
+  --color-error-bg: #FBDEDC;
+  --color-error-fg: #B23430;
+  --color-info-bg: #E6F2F1;
+  --color-info-fg: #246E68;
+
+  /* Fonts (wired to next/font variables set on <html> in app/layout.tsx).
+     Display = Lora, Sans = Nunito Sans — swapped in for Newsreader/Figtree,
+     which lack a Cyrillic subset on Google Fonts (site copy is Russian). */
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: var(--font-hand), "Segoe Script", cursive;
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 3.75rem;
+  --text-6xl: 4.5rem;
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.22;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-caps: 0.10em;
+
+  /* Spacing (additive — sits alongside Tailwind's default scale) */
+  --spacing-18: 4.5rem; /* 72px */
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(43, 39, 34, 0.05);
+  --shadow-sm: 0 1px 2px rgba(43, 39, 34, 0.06), 0 2px 4px rgba(43, 39, 34, 0.04);
+  --shadow-md: 0 4px 10px rgba(43, 39, 34, 0.07), 0 2px 4px rgba(43, 39, 34, 0.05);
+  --shadow-lg: 0 14px 30px rgba(43, 39, 34, 0.10), 0 4px 8px rgba(43, 39, 34, 0.05);
+  --shadow-xl: 0 28px 60px rgba(43, 39, 34, 0.14);
+  --shadow-coral: 0 10px 22px rgba(232, 85, 80, 0.28);
+  --shadow-amber: 0 10px 22px rgba(245, 166, 35, 0.26);
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.33, 0.0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 360ms;
+
+  /* Container */
+  --width-container: 1200px; /* -> w-container / max-w-container */
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-cream);
+  --foreground: var(--color-ink-900);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
