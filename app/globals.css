@@ -150,6 +150,13 @@
      verified individually as they're built. */
   --breakpoint-desktop: 60rem; /* 960px */
   --breakpoint-nav: 68.75rem; /* 1100px */
+
+  /* `compact` = the source's second, narrower 580px cutoff (the same
+     inline <style>'s second @media block) that further collapses
+     .lp-team-grid and .lp-footer-grid from 2 columns down to 1 below
+     580px — those two grids go 4/1.6+1+1+1.3-col desktop -> 2-col at
+     `desktop` -> 1-col at `compact`, a 3-tier collapse unique to them. */
+  --breakpoint-compact: 36.25rem; /* 580px */
 }
 
 :root {
