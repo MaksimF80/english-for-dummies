@@ -129,11 +129,16 @@
   --width-container: 1200px; /* -> w-container */
   --container-page: 1200px; /* -> max-w-page */
 
-  /* Breakpoints (additive). `mobile` = the shared 960px cutoff from
-     Landing.dc.html's inline <style> that collapses .lp-hero /
-     .lp-*-grid / .lp-sec padding for narrow viewports across every
-     section — kept at the source's exact value, used per-section as
-     each one is built and measured for its own content-fit.
+  /* Breakpoints (additive). Tailwind variants are min-width ("active
+     at this size and up"), so these are named for what they switch
+     INTO, not the screen they're named after — `desktop:` means
+     "desktop layout applies", unprefixed = the narrow/mobile default.
+
+     `desktop` = the shared 960px cutoff from Landing.dc.html's inline
+     <style> that flips .lp-hero / .lp-*-grid / .lp-sec padding from
+     mobile to desktop across every section — kept at the source's
+     exact value, verified per-section for content-fit as each one is
+     built (see Header's note below for why that verification matters).
 
      `nav` is intentionally NOT the same value: measured (2026-07-14)
      that Header's actual content — logo + 5 nav links + CTA button +
@@ -141,9 +146,9 @@
      below that even though `.lp-nav` is only hidden below 960px in
      the source). 1100px leaves a safe margin. This is a deliberate
      Header-only deviation from the source's uniform 960px, confirmed
-     with the user — other sections stay on `mobile` (960px) and get
+     with the user — other sections stay on `desktop` (960px) and get
      verified individually as they're built. */
-  --breakpoint-mobile: 60rem; /* 960px */
+  --breakpoint-desktop: 60rem; /* 960px */
   --breakpoint-nav: 68.75rem; /* 1100px */
 }
 
