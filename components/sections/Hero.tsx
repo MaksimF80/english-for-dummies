@@ -13,6 +13,14 @@ import { Button } from "@/components/ui/Button";
  * photo column is dropped entirely (`.lp-hero-right { display: none }`
  * in the source — no stacked-below fallback exists for it).
  *
+ * H1 deviates from source (2026-07-14, found only when testing real
+ * phone widths post-assembly): the source hardcodes `text-5xl` (60px)
+ * unconditionally, but at 60px the phrase's longest word overflows a
+ * narrow phone's text column (measured: 347px content vs 320px
+ * available at 360px viewport). Drops to `text-3xl` (36px — the same
+ * token already used for H2 elsewhere, so guaranteed to fit) below
+ * `desktop`, full `text-5xl` only at `desktop` and up.
+ *
  * Server Component: purely static markup, no interactivity.
  */
 
@@ -33,7 +41,7 @@ export function Hero({ founderPhotoSrc, founderPhotoAlt }: HeroProps) {
           <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-500">
             О школе
           </span>
-          <h1 className="font-display font-medium text-5xl leading-[1.05] tracking-tight text-ink-900 mt-3.5">
+          <h1 className="font-display font-medium text-3xl desktop:text-5xl leading-[1.05] tracking-tight text-ink-900 mt-3.5">
             Английский для тех, кто боится ошибаться
           </h1>
           <p className="font-sans text-lg leading-[1.6] text-ink-700 mt-6 max-w-[520px]">

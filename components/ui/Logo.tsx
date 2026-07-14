@@ -48,9 +48,13 @@ export interface LogoProps {
   showText?: boolean;
   onDark?: boolean;
   className?: string;
+  /** Extra classes on the wordmark text span — for CSS-driven (not
+   * JS-toggled) responsive hiding, e.g. `"hidden social:flex"`, as
+   * opposed to `showText={false}` which removes it unconditionally. */
+  textClassName?: string;
 }
 
-export function Logo({ size = "md", showText = true, onDark = false, className }: LogoProps) {
+export function Logo({ size = "md", showText = true, onDark = false, className, textClassName }: LogoProps) {
   const { dim, titleClass, subSize } = SIZE_CONFIG[size];
   const gap = Math.round(dim * 0.28);
   const marginTop = Math.round(dim * 0.09 * 100) / 100;
@@ -59,7 +63,7 @@ export function Logo({ size = "md", showText = true, onDark = false, className }
     <span className={`inline-flex items-center ${className ?? ""}`} style={{ gap }}>
       <LogoMark size={dim} />
       {showText && (
-        <span className="flex flex-col leading-none">
+        <span className={`flex flex-col leading-none ${textClassName ?? ""}`}>
           <span
             className={`font-display font-semibold ${titleClass} tracking-[-0.01em] whitespace-nowrap ${
               onDark ? "text-cream" : "text-ink-900"

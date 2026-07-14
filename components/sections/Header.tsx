@@ -11,9 +11,20 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
  * source's shared 960px cutoff. Measured 2026-07-14: the actual
  * content (logo + 5 links + CTA + divider + 3 social icons) overflows
  * below ~1045px, well above 960px, so `nav` is a deliberate Header-
- * only breakpoint (see app/globals.css). No mobile menu replacement
- * exists in the source export, so below `nav` only logo + CTA +
- * socials show.
+ * only breakpoint (see app/globals.css).
+ *
+ * A second, narrower deviation (also 2026-07-14, found only once the
+ * full page was assembled and tested at real phone widths — isolated
+ * Header testing only checked the `nav` boundary, not how far it could
+ * shrink beyond that): below `~640px` even Logo + CTA + divider + 3
+ * social icons alone don't fit — real phones (360-430px) overflowed.
+ * The source has no mobile-header fallback at all, so per the user's
+ * call, below `--breakpoint-social` the divider + social icons hide
+ * (CTA is conversion-critical; socials are already duplicated in the
+ * Footer) AND the Logo drops its wordmark to icon-only (measured:
+ * Logo-icon + CTA together need only ~260px, so reusing the same
+ * breakpoint for both is enough margin down to real phone widths —
+ * no need for a third, even-narrower breakpoint).
  *
  * Server Component: nothing here is stateful — sticky positioning
  * and the semi-transparent blur backdrop are plain CSS.
@@ -30,9 +41,9 @@ const NAV_LINKS = [
 export function Header() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-cream/85 backdrop-blur-[10px]">
-      <div className="max-w-page mx-auto flex items-center gap-6 px-8 py-4">
+      <div className="max-w-page mx-auto flex items-center gap-6 px-5 desktop:px-8 py-4">
         <a href="#home" className="flex-none no-underline">
-          <Logo size="md" />
+          <Logo size="md" textClassName="hidden social:flex" />
         </a>
 
         <nav className="hidden nav:flex mx-auto gap-[30px]">
@@ -47,11 +58,13 @@ export function Header() {
           <Button variant="primary" size="sm" icon="mail" as="a" href="#course">
             Узнать о курсе
           </Button>
-          <span className="w-px h-7 bg-line-strong" />
-          <div className="flex gap-2">
-            <SocialIcon name="instagram" label="Instagram" size={38} />
-            <SocialIcon name="telegram" label="Telegram" size={38} />
-            <SocialIcon name="youtube" label="YouTube" size={38} />
+          <div className="hidden social:flex items-center gap-[18px]">
+            <span className="w-px h-7 bg-line-strong" />
+            <div className="flex gap-2">
+              <SocialIcon name="instagram" label="Instagram" size={38} />
+              <SocialIcon name="telegram" label="Telegram" size={38} />
+              <SocialIcon name="youtube" label="YouTube" size={38} />
+            </div>
           </div>
         </div>
       </div>

@@ -157,6 +157,17 @@
      580px — those two grids go 4/1.6+1+1+1.3-col desktop -> 2-col at
      `desktop` -> 1-col at `compact`, a 3-tier collapse unique to them. */
   --breakpoint-compact: 36.25rem; /* 580px */
+
+  /* `social` — a second Header-only deviation, found once the full
+     page was tested at real phone widths (not just Header in
+     isolation): below ~640px, Logo + CTA + divider + 3 social icons
+     still doesn't fit even with nav already hidden. The source has no
+     mobile-header pattern at all, so per the user's call, the divider
+     + social icons hide below this breakpoint — only Logo + the
+     full-text CTA button remain (conversion-critical; socials are
+     already duplicated in the Footer). Value pinned after bisecting
+     the real overflow point (see Header.tsx). */
+  --breakpoint-social: 40rem; /* 640px */
 }
 
 :root {
