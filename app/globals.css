@@ -122,8 +122,29 @@
   --duration-base: 220ms;
   --duration-slow: 360ms;
 
-  /* Container */
-  --width-container: 1200px; /* -> w-container / max-w-container */
+  /* Container. `max-w-*` sizes come from the `--container-*` namespace
+     in Tailwind v4 (not `--width-*`, which only drives `w-*`), and the
+     key can't be named "container" itself (collides with the built-in
+     `.container` utility) — hence `page`, giving `max-w-page`. */
+  --width-container: 1200px; /* -> w-container */
+  --container-page: 1200px; /* -> max-w-page */
+
+  /* Breakpoints (additive). `mobile` = the shared 960px cutoff from
+     Landing.dc.html's inline <style> that collapses .lp-hero /
+     .lp-*-grid / .lp-sec padding for narrow viewports across every
+     section — kept at the source's exact value, used per-section as
+     each one is built and measured for its own content-fit.
+
+     `nav` is intentionally NOT the same value: measured (2026-07-14)
+     that Header's actual content — logo + 5 nav links + CTA button +
+     divider + 3 social icons — doesn't fit until ~1045px (overflows
+     below that even though `.lp-nav` is only hidden below 960px in
+     the source). 1100px leaves a safe margin. This is a deliberate
+     Header-only deviation from the source's uniform 960px, confirmed
+     with the user — other sections stay on `mobile` (960px) and get
+     verified individually as they're built. */
+  --breakpoint-mobile: 60rem; /* 960px */
+  --breakpoint-nav: 68.75rem; /* 1100px */
 }
 
 :root {
