@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { ContactReachField } from "./ContactReachField";
+import { ContactForm } from "./ContactForm";
 
 /**
  * Contact — "Напишите нам — ответим без формальностей" section. Left:
@@ -10,19 +10,15 @@ import { ContactReachField } from "./ContactReachField";
  * update (design-import via `claude_design` MCP) — this section was
  * missing from the original design-import handoff and added later.
  *
- * Server Component for now: the form is purely static markup (source
- * has `onsubmit="return false"`, a placeholder). Wiring the actual
- * submit handler (client-side validation, honeypot, POST to a Route
- * Handler that forwards to Telegram) is a separate, later step — not
- * part of this visual port.
+ * Server Component: the name/message fields and all the static intro
+ * content here are server-rendered. The actual `<form>` tag, submit
+ * button, and honeypot live in `ContactForm` (a Client Component
+ * this passes them into as children — see that file for why), and
+ * the reach-method radio/input live in `ContactReachField`. Submit
+ * posts to `app/api/contact/route.ts`, which forwards to Telegram.
  *
  * Same asymmetric `grid-cols-[0.85fr_1.15fr]` layout and `desktop`
  * breakpoint collapse as FAQ (the section right before this one).
- *
- * The "how should we reply?" radio + reach-method field is the one
- * interactive bit (switches the input's type/placeholder between
- * phone and email) — isolated into `ContactReachField`, a minimal
- * Client Component, so the rest of this section stays server-rendered.
  */
 
 export const INPUT_CLASSES =
@@ -76,7 +72,7 @@ export function Contact() {
         </div>
 
         {/* Right: form card */}
-        <form className="bg-white border border-line rounded-lg shadow-md p-8">
+        <ContactForm>
           <div className="flex flex-col gap-1.5 mb-[18px]">
             <label htmlFor="contact-name" className="font-sans font-semibold text-sm text-ink-900">
               Имя
@@ -106,11 +102,7 @@ export function Contact() {
               className={`${INPUT_CLASSES} resize-y`}
             />
           </div>
-
-          <Button variant="primary" icon="send" type="submit" full>
-            Отправить сообщение
-          </Button>
-        </form>
+        </ContactForm>
       </div>
     </section>
   );
