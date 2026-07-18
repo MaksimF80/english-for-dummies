@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { SocialIcon } from "@/components/ui/SocialIcon";
+import { ContactReachField } from "./ContactReachField";
 
 /**
  * Contact — "Напишите нам — ответим без формальностей" section. Left:
@@ -17,9 +18,14 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
  *
  * Same asymmetric `grid-cols-[0.85fr_1.15fr]` layout and `desktop`
  * breakpoint collapse as FAQ (the section right before this one).
+ *
+ * The "how should we reply?" radio + reach-method field is the one
+ * interactive bit (switches the input's type/placeholder between
+ * phone and email) — isolated into `ContactReachField`, a minimal
+ * Client Component, so the rest of this section stays server-rendered.
  */
 
-const INPUT_CLASSES =
+export const INPUT_CLASSES =
   "w-full font-sans text-base text-ink-900 bg-cream border border-line rounded-sm px-[14px] py-3 " +
   "placeholder:text-ink-500 transition-[border-color,box-shadow] duration-[160ms] ease-soft " +
   "focus:outline-none focus:border-coral-400 focus:shadow-[0_0_0_3px_var(--color-coral-50)]";
@@ -80,24 +86,12 @@ export function Contact() {
               name="name"
               type="text"
               placeholder="Как к вам обращаться?"
+              required
               className={INPUT_CLASSES}
             />
           </div>
 
-          <div className="mb-[18px]">
-            <div className="font-sans font-semibold text-sm text-ink-900 mb-2">Как удобно ответить?</div>
-            <div className="flex gap-5 mb-2.5">
-              <label className="flex items-center gap-1.5 font-sans text-sm text-ink-700 cursor-pointer">
-                <input type="radio" name="contact-method" value="phone" defaultChecked className="accent-coral-500" />
-                Телефон
-              </label>
-              <label className="flex items-center gap-1.5 font-sans text-sm text-ink-700 cursor-pointer">
-                <input type="radio" name="contact-method" value="email" className="accent-coral-500" />
-                Email
-              </label>
-            </div>
-            <input id="contact-reach" name="reach" type="text" placeholder="Телефон или email" className={INPUT_CLASSES} />
-          </div>
+          <ContactReachField />
 
           <div className="flex flex-col gap-1.5 mb-6">
             <label htmlFor="contact-message" className="font-sans font-semibold text-sm text-ink-900">
@@ -108,6 +102,7 @@ export function Contact() {
               name="message"
               rows={4}
               placeholder="Например: хочу начать с нуля, удобны будни вечером"
+              required
               className={`${INPUT_CLASSES} resize-y`}
             />
           </div>
