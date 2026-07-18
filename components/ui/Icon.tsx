@@ -3,6 +3,14 @@ import type { SVGProps } from "react";
 /**
  * Inline Lucide-style glyphs (24×24, 2px stroke), ported from
  * design-import/source/_ds/.../_ds_bundle.js (components/core/Icon.jsx).
+ *
+ * `send` is NOT in the design system's own Icon.jsx (checked the
+ * 2026-07-16 Contact-section update to the bundle) even though the
+ * Contact form's submit Button references `icon="send"` — same kind
+ * of source gap as the earlier missing breakpoint values. Added the
+ * standard Lucide `send` glyph (paper-plane arrow) in the same
+ * stroke style as every other icon here, since there's no ambiguity
+ * about what "send" should look like.
  */
 
 const STROKE = {
@@ -96,6 +104,12 @@ const PATHS = {
     <g {...STROKE}>
       <rect x="2" y="5" width="20" height="14" rx="4.5" />
       <path d="m10 9 5 3-5 3V9Z" fill="currentColor" />
+    </g>
+  ),
+  send: (
+    <g {...STROKE}>
+      <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+      <path d="m21.854 2.147-10.94 10.939" />
     </g>
   ),
 } as const;

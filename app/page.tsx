@@ -4,6 +4,7 @@ import { Courses } from "@/components/sections/Courses";
 import { Team } from "@/components/sections/Team";
 import { Blog } from "@/components/sections/Blog";
 import { FAQ } from "@/components/sections/FAQ";
+import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Team />
         <Blog />
         <FAQ />
+        <Contact />
       </main>
       <Footer />
     </>
