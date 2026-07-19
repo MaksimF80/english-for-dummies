@@ -28,6 +28,12 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
  *
  * Server Component: nothing here is stateful — sticky positioning
  * and the semi-transparent blur backdrop are plain CSS.
+ *
+ * `aria-label` on the logo `<a>` (2026-07-19, Lighthouse a11y audit):
+ * below `social`, `textClassName="hidden social:flex"` hides the
+ * wordmark and the mark SVG itself is `aria-hidden` — without an
+ * explicit label the link had no accessible name at all on mobile
+ * viewports, a direct side effect of the mobile-fit change above.
  */
 
 const NAV_LINKS = [
@@ -42,7 +48,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-cream/85 backdrop-blur-[10px]">
       <div className="max-w-page mx-auto flex items-center gap-6 px-5 desktop:px-8 py-4">
-        <a href="#home" className="flex-none no-underline">
+        <a href="#home" className="flex-none no-underline" aria-label="English for Dummies — на главную">
           <Logo size="md" textClassName="hidden social:flex" />
         </a>
 

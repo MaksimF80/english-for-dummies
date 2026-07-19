@@ -22,6 +22,12 @@ import { Button } from "@/components/ui/Button";
  * `desktop`, full `text-5xl` only at `desktop` and up.
  *
  * Server Component: purely static markup, no interactivity.
+ *
+ * `text-amber-700` (not the source's `amber-600`) on the hand-written
+ * note (2026-07-19, Lighthouse a11y audit): `amber-600` on white is
+ * 2.59:1, failing even the relaxed 3:1 large-text threshold (24px
+ * qualifies as large text under WCAG regardless of weight). `amber-700`
+ * gives 3.84:1, which clears it.
  */
 
 export interface HeroProps {
@@ -38,7 +44,7 @@ export function Hero({ founderPhotoSrc, founderPhotoAlt }: HeroProps) {
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-16 items-center">
         {/* Left: text */}
         <div>
-          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-500">
+          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-700">
             О школе
           </span>
           <h1 className="font-display font-medium text-3xl desktop:text-5xl leading-[1.05] tracking-tight text-ink-900 mt-3.5">
@@ -87,14 +93,14 @@ export function Hero({ founderPhotoSrc, founderPhotoAlt }: HeroProps) {
                 className="object-cover"
               />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-300 font-sans">
+              <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-500 font-sans">
                 Фото основателя
               </div>
             )}
           </div>
 
           <div className="absolute z-[2] right-[-14px] bottom-[26px] bg-white rounded-lg shadow-lg py-3 px-4 flex flex-col gap-0.5 rotate-[2deg] max-w-[220px]">
-            <span className="font-hand font-semibold text-[24px] leading-none text-amber-600">
+            <span className="font-hand font-semibold text-[24px] leading-none text-amber-700">
               20 лет учу говорить
             </span>
             <span className="font-sans font-semibold text-[13px] text-ink-900">Анна Морозова</span>

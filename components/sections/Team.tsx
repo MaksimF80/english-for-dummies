@@ -49,7 +49,7 @@ export function Team() {
     <section id="team" className="bg-cream">
       <div className="max-w-page mx-auto px-5 py-13 desktop:px-8 desktop:py-22">
         <div className="max-w-[560px] mb-11">
-          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-500">
+          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-700">
             Команда
           </span>
           <h2 className="font-display font-medium text-3xl leading-snug text-ink-900 mt-3">

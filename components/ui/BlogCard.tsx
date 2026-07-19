@@ -13,6 +13,10 @@ import { Icon } from "./Icon";
  * `accent` prop in the original — the "read more" link and the title's
  * hover-underline color are hardcoded to coral regardless of accent,
  * so that's preserved as-is rather than made accent-aware.
+ *
+ * Placeholder text uses `text-ink-500`, not the source's `ink-300`
+ * (2026-07-19, Lighthouse a11y audit — see TeacherCard.tsx for the
+ * same fix and the exact contrast numbers).
  */
 
 const ACCENTS = {
@@ -62,7 +66,7 @@ export function BlogCard({
         {coverSrc ? (
           <Image src={coverSrc} alt={coverAlt ?? title} fill className="object-cover" />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-300 font-sans">
+          <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-500 font-sans">
             Обложка статьи
           </div>
         )}

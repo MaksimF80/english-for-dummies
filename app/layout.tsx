@@ -6,6 +6,13 @@ import "./globals.css";
 
 const YANDEX_METRIKA_ID = 110862494;
 
+// Same SITE_URL pattern as app/robots.ts and app/sitemap.ts — real
+// production address (free Vercel subdomain, no custom domain).
+// Needed here so Next.js can resolve absolute URLs for og:image/
+// twitter:image instead of falling back to localhost (the `npm run
+// build` warning this silences).
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://english-for-dummies-tau.vercel.app";
+
 // Lora replaces Newsreader (display/headings) — Newsreader has no
 // Cyrillic subset on Google Fonts and all site copy is Russian.
 const lora = Lora({
@@ -30,6 +37,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "English for Dummies — школа английского без страха ошибиться",
   description:
     "Тёплая школа английского для взрослых: учим говорить спокойно, без оценок и стыда за ошибки. Малые группы до 6 человек, онлайн и офлайн, начать можно с нуля.",

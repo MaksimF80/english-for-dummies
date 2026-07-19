@@ -69,7 +69,7 @@ export function Logo({ size = "md", showText = true, onDark = false, className, 
               onDark ? "text-cream" : "text-ink-900"
             }`}
           >
-            English <span className={onDark ? "text-amber-400" : "text-coral-500"}>for Dummies</span>
+            English <span className={onDark ? "text-amber-400" : "text-coral-700"}>for Dummies</span>
           </span>
           <span
             className={`font-sans font-bold uppercase tracking-[0.18em] ${

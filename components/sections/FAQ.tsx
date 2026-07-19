@@ -53,7 +53,7 @@ export function FAQ() {
       <div className="max-w-page mx-auto px-5 py-13 desktop:px-8 desktop:py-22 grid grid-cols-1 desktop:grid-cols-[0.85fr_1.15fr] gap-14 items-start">
         {/* Left: intro + contact */}
         <div>
-          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-500">
+          <span className="font-sans font-bold text-xs tracking-[0.10em] uppercase text-coral-700">
             FAQ
           </span>
           <h2 className="font-display font-medium text-3xl leading-snug text-ink-900 mt-3">

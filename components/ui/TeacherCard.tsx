@@ -13,6 +13,11 @@ import type { IconName } from "./Icon";
  * `image-slot.js`) isn't needed in Next.js — replaced with `next/image`
  * when `photoSrc` is given, or a plain placeholder box when it isn't
  * (matches the README: team photos are still empty placeholder slots).
+ *
+ * Placeholder text uses `text-ink-500`, not the source's `ink-300`
+ * (2026-07-19, Lighthouse a11y audit): `ink-300` on `cream-200` is
+ * 2.30:1, failing WCAG AA's 4.5:1 for normal text. `ink-500` gives
+ * 4.90:1.
  */
 
 const ACCENTS = {
@@ -65,7 +70,7 @@ export function TeacherCard({
         {photoSrc ? (
           <Image src={photoSrc} alt={photoAlt ?? name} fill className="object-cover" />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-300 font-sans">
+          <div className="absolute inset-0 flex items-center justify-center text-sm text-ink-500 font-sans">
             Фото преподавателя
           </div>
         )}
