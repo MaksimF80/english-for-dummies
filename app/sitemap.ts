@@ -5,14 +5,10 @@ import type { MetadataRoute } from "next";
  * entry — this is a one-page landing site (all sections are anchors
  * on `/`, not separate routes), so there's nothing else to list.
  *
- * Same `SITE_URL` placeholder/override as robots.ts.
- *
- * TODO: once deployed, replace the `https://example.com` fallback
- * below with the real `*.vercel.app` URL (or set `NEXT_PUBLIC_SITE_URL`
- * as an env var instead, which takes priority over this placeholder).
+ * Same `SITE_URL` as robots.ts.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://english-for-dummies-tau.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

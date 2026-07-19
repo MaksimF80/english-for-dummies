@@ -6,16 +6,13 @@ import type { MetadataRoute } from "next";
  * kept in sync with the app's actual base URL instead of a
  * hand-maintained static file.
  *
- * `SITE_URL` isn't set anywhere else in the project yet — the site
- * will launch on a free Vercel subdomain, not a custom domain, and
- * that address is only known once the first deploy exists.
- *
- * TODO: once deployed, replace the `https://example.com` fallback
- * below with the real `*.vercel.app` URL (or set `NEXT_PUBLIC_SITE_URL`
- * as an env var instead, which takes priority over this placeholder).
+ * `SITE_URL` — real production address, deployed on a free Vercel
+ * subdomain (no custom domain). `NEXT_PUBLIC_SITE_URL` is also set
+ * on Vercel itself (Project Settings → Environment Variables) so
+ * this fallback only matters for local dev / builds without it set.
  */
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://english-for-dummies-tau.vercel.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
